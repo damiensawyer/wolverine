@@ -31,7 +31,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddResourceSetupOnStartup();
 
 // The defaults are good enough here
-builder.Host.UseWolverine();
+builder.Host.UseWolverine(opt =>
+{
+    opt.Policies.UseDurableLocalQueues();
+});
 
 var app = builder.Build();
 
