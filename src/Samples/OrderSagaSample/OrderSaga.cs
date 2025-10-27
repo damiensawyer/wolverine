@@ -13,7 +13,7 @@ public record CompleteOrder(string Id);
 
 // This message will always be scheduled to be delivered after
 // a one minute delay
-public record OrderTimeout(string Id) : TimeoutMessage(1.Minutes());
+public record OrderTimeout(string Id) : TimeoutMessage(10.Seconds());
 
 #endregion
 
@@ -28,9 +28,9 @@ public class Order : Saga
     public static (Order, OrderTimeout) Start(StartOrder order, ILogger<Order> logger)
     {
         logger.LogInformation("Got a new order with id {Id}", order.OrderId);
-
+        var orderId = $"{order.OrderId}-{Guid.NewGuid()}";
         // creating a timeout message for the saga
-        return (new Order{Id = order.OrderId}, new OrderTimeout(order.OrderId));
+        return (new Order{Id = orderId}, new OrderTimeout(orderId));
     }
 
     #endregion
