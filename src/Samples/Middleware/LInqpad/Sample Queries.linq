@@ -23,7 +23,7 @@
 --drop table wolverine_middleware.mt_doc_user
 select count(*) from wolverine_middleware.mt_doc_user;
 
---select jsonb_pretty(data) from wolverine_middleware.mt_doc_user;
+--select jsonb_pretty(data),* from wolverine_middleware.mt_doc_user order by mt_last_modified desc;
 
 --DROP INDEX wolverine_middleware.idx_documents_data_gin;
 --

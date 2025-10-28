@@ -42,7 +42,7 @@ public static class FakeUserGenerator
             .RuleFor(u => u.CartId, f => Guid.NewGuid())
 
             // Generate between 1 and 4 orders for this user
-            .RuleFor(u => u.Orders, f => orderFaker.Generate(f.Random.Number(1, 4)));
+            .RuleFor(u => u.Orders, f => orderFaker.Generate(f.Random.Number(20, 200)));
 
         return userFaker.Generate();
     }

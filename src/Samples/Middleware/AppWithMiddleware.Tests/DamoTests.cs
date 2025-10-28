@@ -30,7 +30,7 @@ public class DamoTests
         var store = host.Services.GetRequiredService<IDocumentStore>();
         await using var session = store.LightweightSession();
         //svar testUser = FakeUserGenerator.GenerateFakeUser();
-        var users = Enumerable.Range(0, 10).Select(x => FakeUserGenerator.GenerateFakeUser()).ToList();
+        var users = Enumerable.Range(0, 101).Select(x => FakeUserGenerator.GenerateFakeUser()).ToList();
         session.StoreObjects(users);
         await session.SaveChangesAsync();
         
