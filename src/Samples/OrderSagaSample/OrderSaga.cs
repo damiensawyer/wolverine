@@ -1,5 +1,6 @@
 using JasperFx.Core;
 using Wolverine;
+using Wolverine.Attributes;
 
 namespace OrderSagaSample;
 
@@ -25,6 +26,7 @@ public class Order : Saga
 
     // This method would be called when a StartOrder message arrives
     // to start a new Order
+    [Transactional]
     public static (Order, OrderTimeout) Start(StartOrder order, ILogger<Order> logger)
     {
         logger.LogInformation("Got a new order with id {Id}", order.OrderId);
